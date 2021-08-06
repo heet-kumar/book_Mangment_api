@@ -16,7 +16,7 @@ let books = [
         language: "en",
         pubDate: "2021-07-07",
         numOfPage: 225,
-        category: ["Dev Ops","tech","web dev"],
+        category: ["dev ops","tech","web dev"],
         publication: 1      
     }
 ];
