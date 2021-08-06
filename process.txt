@@ -1,2 +1,0 @@
-npm init -> for the installing the package.json file 
-npm i express -> for installing the expressJs and node modules
