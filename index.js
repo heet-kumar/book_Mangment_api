@@ -23,7 +23,7 @@ bookwallet.get("/",(req,res) => {
 
 /*
 Route           /
-Description     to get all books
+Description     to get specific book based on isbn number
 Access          Public
 Parameter       isbn
 METHOD          GET
