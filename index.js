@@ -40,6 +40,23 @@ bookwallet.get("/:isbn",(req,res) => {
     return res.json({ book : getSpecificBooks });
 });
 
+/*
+Route           /c/
+Description     to get a list of book based on the category
+Access          Public
+Parameter       category
+METHOD          GET
+*/
+bookwallet.get("/c/:category", (req,res) => {
+    const categoryBook = database.books.filter(
+        (book) => book.category.includes(req.params.category)
+    );
 
+    if(categoryBook.length === 0){
+        return res.json( {error : `Book not found based on the given ${req.body.category}`});
+    }
+
+    return res.json({ CategoryBook : categoryBook });
+});
 
 bookwallet.listen(3000, () => console.log("Server is Running !!"));
