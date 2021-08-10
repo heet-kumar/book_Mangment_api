@@ -59,4 +59,21 @@ bookwallet.get("/c/:category", (req,res) => {
     return res.json({ CategoryBook : categoryBook });
 });
 
+/*
+Route           /a/
+Description     to get a list of book based on the author
+Access          Public
+Parameter       authorid
+METHOD          GET
+*/
+bookwallet.get("/a/:authorid",(req,res) => {
+    const AuthorBook = database.books.filter(
+        (book) => book.authors.includes(parseInt(req.params.authorid))
+    );
+    if(AuthorBook.length === 0){
+        return res.json({error : `No book return by the Authorid ${req.params.authorid}`});
+    }
+    return res.json({ AuthorBooks : AuthorBook });
+});
+
 bookwallet.listen(3000, () => console.log("Server is Running !!"));
