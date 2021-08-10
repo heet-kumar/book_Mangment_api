@@ -76,4 +76,18 @@ bookwallet.get("/a/:authorid",(req,res) => {
     return res.json({ AuthorBooks : AuthorBook });
 });
 
+/*
+Route           /newbook
+Description     Enter the New Book in the Book Database
+Access          Public
+Parameter       None
+METHOD          POST
+*/
+bookwallet.post("/newbook",(req,res) => {
+    const addBook = req.body.AddnewBook;
+    database.books.push(addBook);
+
+    return res.json({ Books : database.books, message : "new Book Successfully added" } );
+});
+
 bookwallet.listen(3000, () => console.log("Server is Running !!"));

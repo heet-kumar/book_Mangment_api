@@ -23,7 +23,7 @@
 // to get all books ✅ 📌 Done
 // to get specific book ✅ 📌 Done
 // to get a list of books based on category✅ 📌 Done
-// to get a list of books based on author -> [Task]🔥 📕
+// to get a list of books based on author -> [Task]🔥 📕 Done
 
 // POST
 // New Book ✅ 📌

@@ -29,7 +29,7 @@ let authors = [
     },
     {
         id: 2,
-        name: "Saloni",
+        name: "Saloni Gupta",
         books:["12345ONE","12345TWO"]
     },
     {
