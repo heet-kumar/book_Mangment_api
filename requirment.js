@@ -26,7 +26,7 @@
 // to get a list of books based on author -> [Task]🔥 📕 Done
 
 // POST
-// New Book ✅ 📌
+// New Book ✅ 📌 Done
 
 // PUT
 // Update book details✅ 📌

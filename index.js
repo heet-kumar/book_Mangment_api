@@ -10,6 +10,8 @@ const bookwallet = express();
 // configration
 bookwallet.use(express.json());
 
+// Books api
+
 /*
 Route           /
 Description     to get all books
@@ -17,7 +19,7 @@ Access          Public
 Parameter       None
 METHOD          GET
 */
-bookwallet.get("/",(req,res) => {
+bookwallet.get("/book",(req,res) => {
     return res.json({ books : database.books});
 });
 
@@ -28,7 +30,7 @@ Access          Public
 Parameter       isbn
 METHOD          GET
 */
-bookwallet.get("/:isbn",(req,res) => {
+bookwallet.get("/book/:isbn",(req,res) => {
     const getSpecificBooks = database.books.filter(
         (book) => book.ISBN === req.params.isbn
     );
@@ -47,7 +49,7 @@ Access          Public
 Parameter       category
 METHOD          GET
 */
-bookwallet.get("/c/:category", (req,res) => {
+bookwallet.get("/book/:category", (req,res) => {
     const categoryBook = database.books.filter(
         (book) => book.category.includes(req.params.category)
     );
@@ -66,7 +68,7 @@ Access          Public
 Parameter       authorid
 METHOD          GET
 */
-bookwallet.get("/a/:authorid",(req,res) => {
+bookwallet.get("/book/:authorid",(req,res) => {
     const AuthorBook = database.books.filter(
         (book) => book.authors.includes(parseInt(req.params.authorid))
     );
@@ -83,11 +85,30 @@ Access          Public
 Parameter       None
 METHOD          POST
 */
-bookwallet.post("/newbook",(req,res) => {
+bookwallet.post("/book/newbook",(req,res) => {
     const addBook = req.body.AddnewBook;
     database.books.push(addBook);
 
     return res.json({ Books : database.books, message : "new Book Successfully added" } );
+});
+
+/*
+Route           /update/book
+Description     update book details
+
+*/
+
+// Authors
+
+/*
+Route           /auth
+Description     to get all author details
+Access          PUBLIC
+Parameter       None
+METHOD          GET
+*/
+bookwallet.get("/auth",(req,res)=>{
+    return res.json({Author: database.authors, message: "Author list displayed"});
 });
 
 bookwallet.listen(3000, () => console.log("Server is Running !!"));
