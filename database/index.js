@@ -44,6 +44,11 @@ let publications = [
         id: 1,
         name: "Hector",
         books: ["12345ONE","12345TWO"]
+    },
+    {
+        id: 2,
+        name: "SH",
+        books: ["12345NEW","12345ONE"]
     }
 ];
 

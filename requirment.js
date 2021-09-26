@@ -43,12 +43,12 @@
 // We need an API
 
 // GET
-// to get all authors✅ 📌
-// to get specific author [Task]🔥  📕
-// to get a list of authors based on a book. ✅  📕
+// to get all authors✅ 📌 Done
+// to get specific author [Task]🔥  📕  Done
+// to get a list of authors based on a book. ✅  📕 Done
 
 // POST
-// New Author ✅ 📌
+// New Author ✅ 📌 Done
 
 // PUT
 // update Author name using id [Task] 🔥
@@ -63,9 +63,9 @@
 // We need an API
 
 // GET
-// to get all publications ✅  📕
-// to get specific publication [Task]🔥  📕
-// to get a list of publications based on a book. [Task]🔥  📕
+// to get all publications ✅  📕 Done
+// to get specific publication [Task]🔥  📕 Done
+// to get a list of publications based on a book. [Task]🔥  📕 Done
 
 // POST
 // Add new publication [task] 🔥  📕
