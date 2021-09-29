@@ -94,10 +94,51 @@ bookwallet.post("/book/new",(req,res) => {
 });
 
 /*
-Route           /update/book
-Description     update book details
-
+Route           /book/update
+Description     update book title
+Access          PUBLIC
+Parameter       isbn
+METHOD          PUT
 */
+bookwallet.put("/book/update/:isbn",(req,res) => {
+    database.books.forEach(
+        (book) => {
+            if(book.ISBN === req.params.isbn){
+                book.Title = req.body.bookTitle;
+                return;
+            }
+        }
+    );
+
+    return res.json({books : database.books, message : `Book title updated with ISBN no. ${req.params.isbn}`});
+});
+
+/* 
+Route              book/author/update
+Description        update/add new author
+Access             PUBLIC
+Parameter          isbn
+METHOD             PUT
+*/
+bookwallet.put("/book/author/update/:isbn",(req,res) => {
+    database.books.forEach(
+        (book) => {
+            if(book.ISBN === req.params.isbn){
+                return book.authors.push(req.body.newAuthor);
+            }
+        }
+    );
+    database.authors.forEach(
+        (author) => {
+            if(author.id === req.body.newAuthor){
+                return author.books.push(req.params.isbn);
+            }
+        }
+    );
+
+    return res.json({book: database.books, author: database.authors, message: `author updated in books database and author database`});
+});
+
 
 // Authors
 

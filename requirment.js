@@ -29,8 +29,8 @@
 // New Book ✅ 📌 Done
 
 // PUT
-// Update book details✅ 📌
-// update/add new author✅ 📌
+// Update book details like bookTitle✅ 📌 Done
+// update/add new author✅ 📌 Done
 
 // DELETE
 // delete a book✅ 📌
