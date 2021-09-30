@@ -51,7 +51,7 @@
 // New Author ✅ 📌 Done
 
 // PUT
-// update Author name using id [Task] 🔥
+// update Author name using id [Task] 🔥 Done
 
 // DELETE
 // Delete an author [Task] 🔥🚀
@@ -68,11 +68,11 @@
 // to get a list of publications based on a book. [Task]🔥  📕 Done
 
 // POST
-// Add new publication [task] 🔥  📕
+// Add new publication [task] 🔥  📕 Done
 
 // PUT
-// update publication name using id [Task] 🔥
-// update/add new book to a publication✅
+// update publication name using id [Task] 🔥 Done
+// update/add new book to a publication✅ Done
 
 // DELETE
 // delete a book from publication ✅

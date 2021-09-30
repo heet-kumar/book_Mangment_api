@@ -293,4 +293,47 @@ bookwallet.post("/publication/new",(req,res) => {
     return res.json({Publication : database.publications, message: "New Publication added"});
 });
 
+/*
+Route           /publication/update
+Description     updating publication name using id
+Access          PUBLIC
+Parameter       :pubid
+METHOD          PUT
+*/
+bookwallet.put("/publication/update/:pubid",(req,res) => {
+    database.publications.forEach((pub)=>{
+        if(pub.id === parseInt(req.params.pubid)){
+            pub.name = req.body.newPublicationName;
+            return;
+        }
+    });
+
+    return res.json({Publication : database.publications, message : `publication ${req.params.pubid} updated successfully`})
+});
+
+/*
+Route              /publication/book/update
+Description        update/add new book to a publication
+Access             Public
+Parameter          :pubid
+Method             PUT
+*/
+bookwallet.put("/publication/book/update/:pubid/:isbn",(req,res) => {
+    database.publications.forEach((pub) => {
+        if(pub.id === parseInt(req.params.pubid)){
+            pub.books.push(req.params.isbn);
+            return;
+        }
+    });
+
+    database.books.forEach((book)=>{
+        if(book.ISBN === req.params.isbn){
+            book.publication = req.params.pubid;
+            return;
+        }
+    });
+
+    return res.json({books : database.books,publication: database.publications, message: `new book added into the publication`});
+});
+
 bookwallet.listen(3001, () => console.log("Server is Running !!"));
