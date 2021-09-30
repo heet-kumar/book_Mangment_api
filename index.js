@@ -328,7 +328,7 @@ bookwallet.put("/publication/book/update/:pubid/:isbn",(req,res) => {
 
     database.books.forEach((book)=>{
         if(book.ISBN === req.params.isbn){
-            book.publication = req.params.pubid;
+            book.publication = parseInt(req.params.pubid);
             return;
         }
     });
