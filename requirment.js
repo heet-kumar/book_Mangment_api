@@ -34,7 +34,7 @@
 
 // DELETE
 // delete a book✅ 📌 Done
-// delete a author from a book✅ 📌
+// delete a author from a book✅ 📌 Done
 
 // ---------------------------------------------------------------------------------------
 
@@ -54,7 +54,7 @@
 // update Author name using id [Task] 🔥 Done
 
 // DELETE
-// Delete an author [Task] 🔥🚀
+// Delete an author [Task] 🔥🚀 Done
 
 // ---------------------------------------------------------------------------------------
 

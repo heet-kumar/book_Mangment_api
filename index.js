@@ -283,6 +283,22 @@ bookwallet.put("/author/update/:authid",(req,res)=>{
     return res.json({authors: database.authors, message: `author name updated of author id ${req.params.authid}`});
 });
 
+/*
+Route               /author/delete
+Description         Delete an Author
+Access              Public
+Parameter           :authid
+Method              DELETE
+*/
+bookwallet.delete("/author/delete/:authid",(req,res) => {
+    const updatedAuthor = database.authors.filter(
+        (author) => author.id !== parseInt(req.params.authid)
+    );
+    database.authors = updatedAuthor;
+
+    return res.json({Author : database.authors, message : `author id ${req.params.authid} deleted successfully`});
+});
+
 // publication 
 
 /*
