@@ -33,7 +33,7 @@
 // update/add new author✅ 📌 Done
 
 // DELETE
-// delete a book✅ 📌
+// delete a book✅ 📌 Done
 // delete a author from a book✅ 📌
 
 // ---------------------------------------------------------------------------------------

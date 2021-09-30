@@ -139,6 +139,61 @@ bookwallet.put("/book/author/update/:isbn",(req,res) => {
     return res.json({book: database.books, author: database.authors, message: `author updated in books database and author database`});
 });
 
+/*
+Route           /book/delete
+Description     delete a book
+Access          Public
+Parameter       :isbn
+Method          DELETE
+*/
+bookwallet.delete("/book/delete/:isbn",(req,res) => {
+    const updateBookDatabase = database.books.filter(
+        (book) => book.ISBN !== req.params.isbn
+    );
+
+    database.books = updateBookDatabase
+
+    return res.json({Books : database.books, message: `${req.params.isbn} book deleted successfully`});
+});
+
+/*
+Route           /book/delete/author
+Description     delete a author from a book
+Access          Public
+Parameter       :isbn :authid
+Method          delete
+*/
+bookwallet.delete("/book/delete/author/:isbn/:authid",(req,res)=>{
+    database.books.forEach(
+        (book) => {
+            if(book.ISBN === req.params.isbn){
+                const updatedAuthors = book.authors.filter(
+                    (author)=> author !== parseInt(req.params.authid) 
+                );
+                book.authors = updatedAuthors;
+                return;
+            }
+        }
+    );
+
+    database.authors.forEach(
+        (author) => {
+            if(author.id === parseInt(req.params.authid)){
+                const updatedbooks = author.books.filter(
+                    (books) => books !== req.params.isbn
+                );
+                author.books = updatedbooks;
+                return;
+            }
+        }
+    );
+
+    return res.json({
+        books : database.books,
+        authors : database.authors,
+        message : `Author ${req.params.authid} successfully deleted from book ${req.params.isbn}`
+    });
+});
 
 // Authors
 
