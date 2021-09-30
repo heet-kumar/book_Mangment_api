@@ -210,6 +210,24 @@ bookwallet.post("/author/new",(req,res)=>{
     return res.json({ Authors : database.authors, message : "Author successfully Added"});
 });
 
+/*
+Route              /author/update
+Description        update author name using id
+Access             PUBLIC
+Parameter          :authid
+METHOD             PUT
+*/
+bookwallet.put("/author/update/:authid",(req,res)=>{
+    database.authors.forEach((author) => {
+        if(author.id === parseInt(req.params.authid)){
+            author.name = req.body.newAuthName;
+            return;
+        }
+    });
+
+    return res.json({authors: database.authors, message: `author name updated of author id ${req.params.authid}`});
+});
+
 // publication 
 
 /*
