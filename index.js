@@ -444,4 +444,33 @@ bookwallet.delete("/publication/delete/book/:isbn/:pubid",(req,res)=>{
 
 });
 
+/*
+Route           /publication/delete
+Description     delete a publication
+Access          Public
+Parameter       :pubid
+Method          delete
+*/
+bookwallet.delete("/publication/delete/:pubid",(req,res) => {
+    const updatedPublication = database.publications.filter(
+        (pub) => pub.id !== parseInt(req.params.pubid)
+    );
+    database.publications = updatedPublication;
+
+    database.books.forEach(
+        (books) => {
+            if(books.publication === parseInt(req.params.pubid)){
+                books.publication = 0;
+                return;
+            }
+        }
+    );
+
+    return res.json({
+        Publication : database.publications,
+        Books: database.books,
+        message : `Publication id ${req.params.pubid} successfully deleted`
+    });
+});
+
 bookwallet.listen(3001, () => console.log("Server is Running !!"));
