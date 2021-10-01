@@ -75,7 +75,7 @@
 // update/add new book to a publication✅ Done
 
 // DELETE
-// delete a book from publication ✅
+// delete a book from publication ✅ Done
 // delete a publication [Task] 🔥🚀
 
 // Add mongoose validation to All the models [Task] 🔥

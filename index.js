@@ -407,4 +407,41 @@ bookwallet.put("/publication/book/update/:pubid/:isbn",(req,res) => {
     return res.json({books : database.books,publication: database.publications, message: `new book added into the publication`});
 });
 
+/*
+Route               /publication/delete/book
+Description         delete a book from publication
+Access              Public
+Parameter           :isbn :pubid
+Method              DELETE
+*/
+bookwallet.delete("/publication/delete/book/:isbn/:pubid",(req,res)=>{
+    database.publications.forEach(
+        (pub) =>{
+            if(pub.id === parseInt(req.params.pubid)){
+                const updatedBooks = pub.books.filter(
+                    (book) => book !== req.params.isbn
+                );
+                pub.books = updatedBooks;
+                return;
+            }
+        }
+    );
+    
+    database.books.forEach(
+        (book) => {
+            if(book.publication === parseInt(req.params.pubid)){
+                book.publication = 0;
+                return;
+            }
+        }
+    );
+
+    return res.json({
+        publication : database.publications,
+        Books : database.books,
+        message : `Book of isbn ${req.params.isbn} deleted successfully from Publication id ${req.params.pubid}`
+    });
+
+});
+
 bookwallet.listen(3001, () => console.log("Server is Running !!"));
