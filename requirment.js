@@ -20,13 +20,13 @@
 // We need an API
 
 // GET
-// to get all books ✅ 📌 Done
-// to get specific book ✅ 📌 Done
-// to get a list of books based on category✅ 📌 Done
-// to get a list of books based on author -> [Task]🔥 📕 Done
+// to get all books ✅ 📌 Done  MongoDB
+// to get specific book ✅ 📌 Done  MongoDB
+// to get a list of books based on category✅ 📌 Done MongoDB
+// to get a list of books based on author -> [Task]🔥 📕 Done MOngoDB
 
 // POST
-// New Book ✅ 📌 Done
+// New Book ✅ 📌 Done MongoDB
 
 // PUT
 // Update book details like bookTitle✅ 📌 Done
