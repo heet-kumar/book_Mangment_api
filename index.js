@@ -494,3 +494,15 @@ bookwallet.listen(3001, () => console.log("Server is Running !!"));
 // talk to us in which way we understand is "JavaScript"
 
 // that can be done with "mongoose"
+
+// why schema ?
+
+// MongoDB is schemaless
+
+//mongoose help you with validation, relationship with other data -> mongodb
+
+// mongoose model
+
+// model -> document model of mongoDB
+
+// Schema -> model -> use them
