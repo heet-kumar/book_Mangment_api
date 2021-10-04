@@ -39,8 +39,9 @@ Access          Public
 Parameter       None
 METHOD          GET
 */
-bookwallet.get("/",(req,res) => {
-    return res.json({ books : database.books});
+bookwallet.get("/", async(req,res) => {
+    const getAllBooks = await BookModel.find();
+    return res.json({ books : getAllBooks});
 });
 
 /*
@@ -50,12 +51,16 @@ Access          Public
 Parameter       isbn
 METHOD          GET
 */
-bookwallet.get("/is/:isbn",(req,res) => {
-    const getSpecificBooks = database.books.filter(
-        (book) => book.ISBN === req.params.isbn
-    );
+bookwallet.get("/is/:isbn", async (req,res) => {
+    const getSpecificBooks = await BookModel.findOne({ISBN: req.params.isbn});
+    // const getSpecificBooks = database.books.filter(
+    //     (book) => book.ISBN === req.params.isbn
+    // );
 
-    if(getSpecificBooks.length === 0){
+    // if get specific book is empty then it returns null not 0 (zero)
+    // value -> null -> false
+
+    if(!getSpecificBooks){
         return res.json({ error : `Book not Found for ISBN of ${req.params.isbn}`});
     }
 
@@ -69,13 +74,15 @@ Access          Public
 Parameter       category
 METHOD          GET
 */
-bookwallet.get("/c/:category", (req,res) => {
-    const categoryBook = database.books.filter(
-        (book) => book.category.includes(req.params.category)
-    );
+bookwallet.get("/c/:category", async (req,res) => {
+    const categoryBook = await BookModel.find({category: req.params.category});
 
-    if(categoryBook.length === 0){
-        return res.json( {error : `Book not found based on the given ${req.body.category}`});
+    // const categoryBook = database.books.filter(
+    //     (book) => book.category.includes(req.params.category)
+    // );
+
+    if(!categoryBook){
+        return res.json( {error : `Book not found based on the given ${req.params.category}`});
     }
 
     return res.json({ CategoryBook : categoryBook });
@@ -88,14 +95,16 @@ Access          Public
 Parameter       authorid
 METHOD          GET
 */
-bookwallet.get("/a/:authorid",(req,res) => {
-    const AuthorBook = database.books.filter(
-        (book) => book.authors.includes(parseInt(req.params.authorid))
-    );
-    if(AuthorBook.length === 0){
+bookwallet.get("/a/:authorid",async (req,res) => {
+    const AuthorBook = await BookModel.find({authors: parseInt(req.params.authorid)});
+    // const AuthorBook = database.books.filter(
+    //     (book) => book.authors.includes(parseInt(req.params.authorid))
+    // );
+
+    if(!AuthorBook){
         return res.json({error : `No book written by the Authorid ${req.params.authorid}`});
     }
-    return res.json({ AuthorBooks : AuthorBook });
+    return res.json({ AuthorBooks : AuthorBook, message: `books writen by the author id ${req.params.authorid} are displayed` });
 });
 
 /*
@@ -105,12 +114,16 @@ Access          Public
 Parameter       None
 METHOD          POST
 */
-bookwallet.post("/book/new",(req,res) => {
+bookwallet.post("/book/new", async (req,res) => {
     
     const addBook = req.body.AddnewBook;
-    database.books.push(addBook);
+    
+    //database.books.push(addBook);
+    await BookModel.create(addBook);
 
-    return res.json({ Books : database.books, message : "new Book Successfully added" } );
+    const getAllBooks = await BookModel.find();
+
+    return res.json({ Books : getAllBooks, message : "new Book Successfully added" } );
 });
 
 /*
