@@ -1,5 +1,8 @@
+require("dotenv").config();
+
 // Frame work
 const express = require("express");
+const mongoose = require("mongoose");
 
 // Database
 const database = require("./database/index");
@@ -9,6 +12,18 @@ const bookwallet = express();
 
 // configration
 bookwallet.use(express.json());
+
+//Establish Database Connection
+mongoose.connect(
+    process.env.MONGO_URL,
+    // {
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true,
+    //     useFindAndModify: false,
+    //     useCreateIndex: true,
+    // }
+).then(() => console.log("Connection established!!!!!!"));
+
 
 // Books api
 
@@ -475,4 +490,7 @@ bookwallet.delete("/publication/delete/:pubid",(req,res) => {
 
 bookwallet.listen(3001, () => console.log("Server is Running !!"));
 
-// adding moongose 
+// talk to mongodb in which language mongodb understand
+// talk to us in which way we understand is "JavaScript"
+
+// that can be done with "mongoose"
