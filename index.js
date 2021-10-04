@@ -7,6 +7,11 @@ const mongoose = require("mongoose");
 // Database
 const database = require("./database/index");
 
+// Models
+const BookModel = require("./database/book");
+const AuthorModel = require("./database/author");
+const PublicationModel = require("./database/publication");
+
 // Initializing
 const bookwallet = express();
 
@@ -34,8 +39,9 @@ Access          Public
 Parameter       None
 METHOD          GET
 */
-bookwallet.get("/",(req,res) => {
-    return res.json({ books : database.books});
+bookwallet.get("/", async(req,res) => {
+    const getAllBooks = await BookModel.find();
+    return res.json({ books : getAllBooks});
 });
 
 /*
