@@ -108,7 +108,7 @@ bookwallet.get("/a/:authorid",async (req,res) => {
 });
 
 /*
-Route           /new
+Route           book/new
 Description     Enter the New Book in the Book Database
 Access          Public
 Parameter       None
@@ -237,8 +237,9 @@ Access          PUBLIC
 Parameter       None
 METHOD          GET
 */
-bookwallet.get("/author",(req,res)=>{
-    return res.json({Author: database.authors, message: "Author list displayed"});
+bookwallet.get("/author",async (req,res)=>{
+    const getAllAuthors = await AuthorModel.find();
+    return res.json({Author: getAllAuthors, message: "Author list displayed"});
 });
 
 /*
@@ -248,14 +249,16 @@ Access          PUBLIC
 Parameter       authid
 METHOD          GET
 */
-bookwallet.get("/author/:authid",(req,res)=>{
-    const authordetails = database.authors.filter(
-        (author) => author.id === parseInt(req.params.authid)
-    );
+bookwallet.get("/author/:authid",async(req,res)=>{
+
+    // const authordetails = database.authors.filter(
+    //     (author) => author.id === parseInt(req.params.authid)
+    // );
+    const authordetails = await AuthorModel.findOne({id: parseInt(req.params.authid)});
 
     //console.log(authordetails);
 
-    if(authordetails.length === 0){
+    if(!authordetails){
         return res.json({error : `Author not found of the particular id ${req.params.authid}`});
     }
 
@@ -269,12 +272,13 @@ Access          PUBLIC
 Parameter       bookid
 METHOD          GET
 */
-bookwallet.get("/author/b/:isbn",(req,res)=>{
-    const bookAuthor = database.authors.filter(
-        (author) => author.books.includes(req.params.isbn)
-    );
+bookwallet.get("/author/b/:isbn",async (req,res)=>{
+    // const bookAuthor = database.authors.filter(
+    //     (author) => author.books.includes(req.params.isbn)
+    // );
+    const bookAuthor = await AuthorModel.find({books: req.params.isbn});
 
-    if(bookAuthor.length === 0){
+    if(!bookAuthor){
         return res.json({error: `Author not found of the given book id ${req.params.isbn}`});
     }
 
@@ -288,14 +292,17 @@ Access          PUBLIC
 Parameter       NONE
 METHOD          POST
 */
-bookwallet.post("/author/new",(req,res)=>{
+bookwallet.post("/author/new",async (req,res)=>{
 
     const { newAuthor } = req.body;
     //console.log(newAuthor);
 
-    database.authors.push(newAuthor);
+    //database.authors.push(newAuthor);
+    await AuthorModel.create(newAuthor);
 
-    return res.json({ Authors : database.authors, message : "Author successfully Added"});
+    const getAllAuthor = await AuthorModel.find();
+
+    return res.json({ Authors : getAllAuthor, message : "Author successfully Added"});
 });
 
 /*
@@ -341,8 +348,9 @@ Access          PUBLIC
 Parameter       NONE
 METHOD          GET
 */
-bookwallet.get("/publication",(req,res) => {
-    return res.json({ Publication : database.publications, message: `publication details are displayed successfully`});
+bookwallet.get("/publication",async(req,res) => {
+    const getAllPublication = await PublicationModel.find();
+    return res.json({ Publication : getAllPublication, message: `publication details are displayed successfully`});
 });
 
 /*
@@ -352,12 +360,13 @@ Access          PUBLIC
 Parameter       pubid
 METHOD          GET
 */
-bookwallet.get("/publication/:pubid",(req,res) => {
-    const specificpublication = database.publications.filter(
-        (pub) => pub.id === parseInt(req.params.pubid)
-    );
+bookwallet.get("/publication/:pubid",async(req,res) => {
+    // const specificpublication = database.publications.filter(
+    //     (pub) => pub.id === parseInt(req.params.pubid)
+    // );
+    const specificpublication = await PublicationModel.findOne({id: parseInt(req.params.pubid)});
 
-    if(specificpublication.length === 0){
+    if(!specificpublication){
         return res.json({error : "publication not found"});
     }
     
@@ -371,12 +380,13 @@ Access          PUBLIC
 Parameter       :isbn
 METHOD          GET
 */
-bookwallet.get("/publication/b/:isbn",(req,res) => {
-    const bookPublication = database.publications.filter(
-        (pub) => pub.books.includes(req.params.isbn)
-    );
+bookwallet.get("/publication/b/:isbn",async(req,res) => {
+    // const bookPublication = database.publications.filter(
+    //     (pub) => pub.books.includes(req.params.isbn)
+    // );
+    const bookPublication = await PublicationModel.findOne({books: req.params.isbn});
 
-    if(bookPublication.length === 0){
+    if(!bookPublication){
         return res.json({error: `Publication not found of the book isbn ${req.params.isbn}`});
     }
 
@@ -390,11 +400,14 @@ Access          PUBLIC
 Parameter       NONE
 METHOD          POST
 */
-bookwallet.post("/publication/new",(req,res) => {
+bookwallet.post("/publication/new", async(req,res) => {
     const { newPublication } = req.body;
-    database.publications.push(newPublication);
+    //database.publications.push(newPublication);
+    await PublicationModel.create(newPublication);
 
-    return res.json({Publication : database.publications, message: "New Publication added"});
+    const getAllPublication = await PublicationModel.find();
+
+    return res.json({Publication : getAllPublication, message: "New Publication added"});
 });
 
 /*

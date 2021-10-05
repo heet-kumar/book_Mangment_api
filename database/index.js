@@ -34,7 +34,7 @@ let authors = [
     },
     {
         id: 3,
-        name: "Heet Kothadiya",
+        name: "Hitu Kothadiya",
         books: ["12345ONE"]
     }
 ];
@@ -43,12 +43,12 @@ let publications = [
     {
         id: 1,
         name: "Hector",
-        books: ["12345ONE","12345TWO"]
+        books: ["12345ONE"]
     },
     {
         id: 2,
-        name: "SH",
-        books: ["12345NEW","12345ONE"]
+        name: "SH publication",
+        books: ["12345TWO"]
     }
 ];
 

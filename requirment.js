@@ -43,12 +43,12 @@
 // We need an API
 
 // GET
-// to get all authors✅ 📌 Done
-// to get specific author [Task]🔥  📕  Done
-// to get a list of authors based on a book. ✅  📕 Done
+// to get all authors✅ 📌 Done MongoDB
+// to get specific author [Task]🔥  📕  Done MongoDB
+// to get a list of authors based on a book. ✅  📕 Done MongoDB
 
 // POST
-// New Author ✅ 📌 Done
+// New Author ✅ 📌 Done MongoDB
 
 // PUT
 // update Author name using id [Task] 🔥 Done
@@ -63,12 +63,12 @@
 // We need an API
 
 // GET
-// to get all publications ✅  📕 Done
-// to get specific publication [Task]🔥  📕 Done
-// to get a list of publications based on a book. [Task]🔥  📕 Done
+// to get all publications ✅  📕 Done MongoDB
+// to get specific publication [Task]🔥  📕 Done MongoDB
+// to get a list of publications based on a book. [Task]🔥  📕 Done MongoDB
 
 // POST
-// Add new publication [task] 🔥  📕 Done
+// Add new publication [task] 🔥  📕 Done MongoDB
 
 // PUT
 // update publication name using id [Task] 🔥 Done
