@@ -597,31 +597,55 @@ Access              Public
 Parameter           :isbn :pubid
 Method              DELETE
 */
-bookwallet.delete("/publication/delete/book/:isbn/:pubid",(req,res)=>{
-    database.publications.forEach(
-        (pub) =>{
-            if(pub.id === parseInt(req.params.pubid)){
-                const updatedBooks = pub.books.filter(
-                    (book) => book !== req.params.isbn
-                );
-                pub.books = updatedBooks;
-                return;
+bookwallet.delete("/publication/delete/book/:isbn/:pubid",async(req,res)=>{
+    // database.publications.forEach(
+    //     (pub) =>{
+    //         if(pub.id === parseInt(req.params.pubid)){
+    //             const updatedBooks = pub.books.filter(
+    //                 (book) => book !== req.params.isbn
+    //             );
+    //             pub.books = updatedBooks;
+    //             return;
+    //         }
+    //     }
+    // );
+    const updatePublication = await PublicationModel.findOneAndUpdate(
+        {
+            id: parseInt(req.params.pubid)
+        },
+        {
+            $pull:{
+                books: req.params.isbn
             }
+        },
+        {
+            new: true
         }
     );
     
-    database.books.forEach(
-        (book) => {
-            if(book.publication === parseInt(req.params.pubid)){
-                book.publication = 0;
-                return;
-            }
+    // database.books.forEach(
+    //     (book) => {
+    //         if(book.publication === parseInt(req.params.pubid)){
+    //             book.publication = 0;
+    //             return;
+    //         }
+    //     }
+    // );
+    const updateBook = await BookModel.findOneAndUpdate(
+        {
+            publication: parseInt(req.params.pubid)
+        },
+        {
+            publication: 0
+        },
+        {
+            new: true
         }
     );
 
     return res.json({
-        publication : database.publications,
-        Books : database.books,
+        publication : updatePublication,
+        Books : updateBook,
         message : `Book of isbn ${req.params.isbn} deleted successfully from Publication id ${req.params.pubid}`
     });
 
