@@ -189,7 +189,7 @@ bookwallet.put("/book/author/update/:isbn",async(req,res) => {
             ISBN : req.params.isbn
         },
         {
-            $push:{
+            $addToSet:{
                 authors: req.body.newAuthor
             }
         },
@@ -210,7 +210,7 @@ bookwallet.put("/book/author/update/:isbn",async(req,res) => {
             id : req.body.newAuthor
         },
         {
-            $push: {
+            $addToSet: {
                 books : req.params.isbn
             }
         },
