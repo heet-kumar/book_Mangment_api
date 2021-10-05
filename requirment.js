@@ -29,12 +29,12 @@
 // New Book ✅ 📌 Done MongoDB
 
 // PUT
-// Update book details like bookTitle✅ 📌 Done
-// update/add new author✅ 📌 Done
+// Update book details like bookTitle✅ 📌 Done MongoDB
+// update/add new author✅ 📌 Done MOngoDB
 
 // DELETE
-// delete a book✅ 📌 Done
-// delete a author from a book✅ 📌 Done
+// delete a book✅ 📌 Done MongoDB
+// delete a author from a book✅ 📌 Done MongoDB
 
 // ---------------------------------------------------------------------------------------
 
@@ -51,10 +51,10 @@
 // New Author ✅ 📌 Done MongoDB
 
 // PUT
-// update Author name using id [Task] 🔥 Done
+// update Author name using id [Task] 🔥 Done MongoDB
 
 // DELETE
-// Delete an author [Task] 🔥🚀 Done
+// Delete an author [Task] 🔥🚀 Done MongoDB
 
 // ---------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@
 // update/add new book to a publication✅ Done MongoDB
 
 // DELETE
-// delete a book from publication ✅ Done MongoDB
+// delete a book from publication ✅ Done
 // delete a publication [Task] 🔥🚀 Done MongoDB
 
 // Add mongoose validation to All the models [Task] 🔥
