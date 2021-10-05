@@ -5,3 +5,5 @@ package-lock.json
 process.txt
 
 .env
+
+MongoDB_Operator.js

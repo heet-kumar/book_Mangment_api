@@ -133,17 +133,40 @@ Access          PUBLIC
 Parameter       isbn
 METHOD          PUT
 */
-bookwallet.put("/book/update/:isbn",(req,res) => {
-    database.books.forEach(
-        (book) => {
-            if(book.ISBN === req.params.isbn){
-                book.Title = req.body.bookTitle;
-                return;
-            }
+bookwallet.put("/book/update/:isbn",async(req,res) => {
+    
+    const updateBook = await BookModel.findOneAndUpdate(
+        {
+            ISBN: req.params.isbn     // finding the book where
+                                      // this condition true and book found
+                                      // there will be data updation will be done.
+        },
+        {
+            Title: req.body.bookTitle   // what data should be updated
+        },
+        {
+            new: true   // updation should displayed
+                        // new updated data should be assigned to the given costant
         }
     );
 
-    return res.json({books : database.books, message : `Book title updated with ISBN no. ${req.params.isbn}`});
+    // this all about the above given updateBook
+
+    // first bracket : finding the book where this condition true and book found there will be data updation will be done.
+    // second flower brackets : what data should be updated
+    // third flower brackets : updation should displayed new updated data should be assigned to the given costant
+
+
+    // database.books.forEach(
+    //     (book) => {
+    //         if(book.ISBN === req.params.isbn){
+    //             book.Title = req.body.bookTitle;
+    //             return;
+    //         }
+    //     }
+    // );
+
+    return res.json({books : updateBook, message : `Book title updated with ISBN no. ${req.params.isbn}`});
 });
 
 /* 
@@ -153,23 +176,50 @@ Access             PUBLIC
 Parameter          isbn
 METHOD             PUT
 */
-bookwallet.put("/book/author/update/:isbn",(req,res) => {
-    database.books.forEach(
-        (book) => {
-            if(book.ISBN === req.params.isbn){
-                return book.authors.push(req.body.newAuthor);
+bookwallet.put("/book/author/update/:isbn",async(req,res) => {
+    // database.books.forEach(
+    //     (book) => {
+    //         if(book.ISBN === req.params.isbn){
+    //             return book.authors.push(req.body.newAuthor);
+    //         }
+    //     }
+    // );
+    const addAuthorToBook = await BookModel.findOneAndUpdate(
+        {
+            ISBN : req.params.isbn
+        },
+        {
+            $push:{
+                authors: req.body.newAuthor
             }
-        }
-    );
-    database.authors.forEach(
-        (author) => {
-            if(author.id === req.body.newAuthor){
-                return author.books.push(req.params.isbn);
-            }
+        },
+        {
+            new: true
         }
     );
 
-    return res.json({book: database.books, author: database.authors, message: `author updated in books database and author database`});
+    // database.authors.forEach(
+    //     (author) => {
+    //         if(author.id === req.body.newAuthor){
+    //             return author.books.push(req.params.isbn);
+    //         }
+    //     }
+    // );
+    const addBookToAuthor = await AuthorModel.findOneAndUpdate(
+        {
+            id : req.body.newAuthor
+        },
+        {
+            $push: {
+                books : req.params.isbn
+            }
+        },
+        {
+            new : true
+        }
+    );
+
+    return res.json({book: addAuthorToBook, author: addBookToAuthor, message: `author updated in books database and author database`});
 });
 
 /*

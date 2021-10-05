@@ -71,8 +71,8 @@
 // Add new publication [task] 🔥  📕 Done MongoDB
 
 // PUT
-// update publication name using id [Task] 🔥 Done
-// update/add new book to a publication✅ Done
+// update publication name using id [Task] 🔥 Done MongoDB
+// update/add new book to a publication✅ Done MongoDB
 
 // DELETE
 // delete a book from publication ✅ Done
