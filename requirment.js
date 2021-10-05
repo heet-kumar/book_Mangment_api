@@ -75,8 +75,8 @@
 // update/add new book to a publication✅ Done MongoDB
 
 // DELETE
-// delete a book from publication ✅ Done
-// delete a publication [Task] 🔥🚀 Done
+// delete a book from publication ✅ Done MongoDB
+// delete a publication [Task] 🔥🚀 Done MongoDB
 
 // Add mongoose validation to All the models [Task] 🔥
 
