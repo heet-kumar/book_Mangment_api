@@ -14,8 +14,12 @@ Parameter       None
 METHOD          GET
 */
 Router.get("/",async (req,res)=>{
-    const getAllAuthors = await AuthorModel.find();
-    return res.json({Author: getAllAuthors, message: "Author list displayed"});
+    try{
+        const getAllAuthors = await AuthorModel.find();
+        return res.json({Author: getAllAuthors, message: "Author list displayed"});
+    }catch(error){
+        return res.json({Error: error.message});
+    }
 });
 
 /*
@@ -70,6 +74,7 @@ METHOD          POST
 */
 Router.post("/new",async (req,res)=>{
 
+   try{
     const { newAuthor } = req.body;
     //console.log(newAuthor);
 
@@ -79,6 +84,9 @@ Router.post("/new",async (req,res)=>{
     const getAllAuthor = await AuthorModel.find();
 
     return res.json({ Authors : getAllAuthor, message : "Author successfully Added"});
+   } catch (error) {
+       return res.json({error: error.message});
+   }
 });
 
 /*
