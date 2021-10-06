@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Constructing Author schema
 const AuthorSchema = mongoose.Schema({
     id: {
-        type: String,
+        type: Number,
         required: true,
     },
     name: {

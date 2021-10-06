@@ -7,8 +7,14 @@ const BookSchema = mongoose.Schema({
         required: true,
         minlength: 8
     },
-    Title: String,
-    authors: [Number],
+    Title: {
+        type: String,
+        required: true
+    },
+    authors: {
+        type: [Number],
+        required: true
+    },
     language: String,
     pubDate: String,
     numOfPage: Number,
