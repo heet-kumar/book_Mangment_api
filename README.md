@@ -10,4 +10,5 @@ API methods are used :
 - GET
 - POST
 - PUT
-- DELETE
+- DELETE 
+and many more......
